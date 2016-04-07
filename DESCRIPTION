@@ -1,0 +1,22 @@
+Package: ethr
+Title: Scrape and Parse Data from the Ethereum Blockchain
+Version: 0.9.9
+Authors@R: as.person(c(
+    "Ben Leland <ben.leland@gmail.com> [aut, cre]", 
+    "Kate Harris <kateharris142@gmail.com> [aut]"
+  ))
+Description: Tools for querying and analysing Ethereum blockchain data by POST
+    method to the geth JSON-RPC API.
+Depends:
+    R (>= 3.2.3)
+Imports:
+    httr,
+    plyr,
+    Rmpfr,
+    gmp
+Suggests:
+    dplyr,
+    doParallel
+License: MIT
+LazyData: true
+RoxygenNote: 5.0.1
