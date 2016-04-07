@@ -16,12 +16,7 @@ Description
 
 The 'ethr' R package is an interface for accessing Ethereum blockchain data in R, querying the Ethereum Blockchain via the JSON-RPC API.
 
-'ethr' provides several convenience and helper functions, such as:
-
--   Handling of hexadecimal conversion
--   Access block data
--   Access transaction data/transaction receipts
--   Bulk download management
+'ethr' provides several convenience and helper functions, such as: \* Access block data \* Access transaction data/transaction receipts \* Bulk download management \* Handling of hexadecimal conversion \* Initial (limited) visualisation
 
 Before using ethr
 =================
@@ -94,6 +89,7 @@ library(plyr)
 library(dplyr)
 library(httr)
 library(igraph)
+library(gmp)
 ```
 
 If we want to look at the 7.00am to 7.05 am on last day of March, we can use getTransactionInTimeFrame to get the numbers of those blocks.
@@ -123,7 +119,7 @@ names(transactions)
 ```
 
     ##  [1] "blNumber"           "blTimestamp"        "blTimeHash"        
-    ##  [4] "blGasUsed"          "blGasLimit"         "blhash"            
+    ##  [4] "blGasUsed"          "blGasLimit"         "blHash"            
     ##  [7] "blMiner"            "blDifficulty"       "blSizeBytes"       
     ## [10] "blParent"           "blReceiptRoot"      "blStateRoot"       
     ## [13] "blTransactionsRoot" "trValueEth"         "trIndex"           
@@ -163,7 +159,7 @@ names(block_headers)
 ```
 
     ##  [1] "blNumber"           "blTimestamp"        "blTimeHash"        
-    ##  [4] "blGasUsed"          "blGasLimit"         "blhash"            
+    ##  [4] "blGasUsed"          "blGasLimit"         "blHash"            
     ##  [7] "blMiner"            "blDifficulty"       "blSizeBytes"       
     ## [10] "blParent"           "blReceiptRoot"      "blStateRoot"       
     ## [13] "blTransactionsRoot"
