@@ -21,7 +21,7 @@ decHex <- function(dec) {
          formatted as type \"character\" to preserve precision.")
   }
   
-  result <- paste0("0x",as.character(as.bigz(dec),b=16))
+  result <- paste0("0x",as.character(gmp::as.bigz(dec),b=16))
   return(result)
 }
 

@@ -11,10 +11,6 @@
 #' @return plot of the nodes and transaction for the input data.
 #' @import igraph
 #' @export
-#'
-#' @examples
-#' nodesPlot(transactions)
-#' nodesPlot(transaction,degree_thres=50,save_plot=TRUE)
 nodesPlot <- function(table = transactions,degree_thres = 10, save_plot=FALSE){
   
   if(!is.data.frame(table)){
