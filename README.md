@@ -16,7 +16,13 @@ Description
 
 The 'ethr' R package is an interface for accessing Ethereum blockchain data in R, querying the Ethereum Blockchain via the JSON-RPC API.
 
-'ethr' provides several convenience and helper functions, such as: \* Access block data \* Access transaction data/transaction receipts \* Bulk download management \* Handling of hexadecimal conversion \* Initial (limited) visualisation
+'ethr' provides several convenience and helper functions, such as:
+
+-   Access block data
+-   Access transaction data/transaction receipts
+-   Bulk download management
+-   Handling of hexadecimal conversion
+-   Initial (limited) visualisation
 
 Before using ethr
 =================
