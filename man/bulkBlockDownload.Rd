@@ -12,21 +12,24 @@ bulkBlockDownload(start_block, end_block, data_dir, chunk_size = 50000,
 
 \item{end_block}{numeric, Ending block number.}
 
-\item{data_dir}{path, Desired folder for storing analysis table in.}
+\item{data_dir}{path, Desired folder for storing analysis table in - needs to
+exist before running.}
 
 \item{chunk_size}{numeric, Chunk size to Download.}
 
 \item{parallel}{logical, Should plyr operate in parallel.}
 
-\item{cores}{numeric, number of cores to be intialised. Suggested n - 1,
+\item{cores}{numeric, number of cores to be intialised. Suggested n - 1, 
 where n is localhosts number of cores.}
 }
 \value{
-saves .RData file within \code{ethr_blocks} folder in the
+saves .RData file within \code{ethr_blocks} folder in the 
   \code{data_dir}.
 }
 \description{
-Breaks a large block range up and manages the download size. All downloaded
-blocks will be stored in a \code{ethr_blocks} folder in the \code{data_dir}.
+Breaks a large block range up and manages the download size. All downloaded 
+blocks will be stored in a \code{ethr_blocks} folder in the \code{data_dir}. 
+Uses doParallel package to create a multithread workgroup to increase 
+download speed.
 }
 

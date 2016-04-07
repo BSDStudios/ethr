@@ -9,7 +9,8 @@ getBlockTransactions(n_blocks = NULL, start_block = NULL,
   rpc_address = "http://localhost:8545")
 }
 \arguments{
-\item{n_blocks}{numeric, Number of blocks to extract back from the latest block.}
+\item{n_blocks}{numeric, Number of blocks to extract back from the latest
+block.}
 
 \item{start_block}{numeric, Starting block number for extraction.}
 
@@ -18,11 +19,13 @@ getBlockTransactions(n_blocks = NULL, start_block = NULL,
 \item{rpc_address}{character, The address of the RPC API.}
 }
 \value{
-data.frame Transation data of requested blocks.
+data.frame Table combining the block data and transaction data
+  returned by eth_getBlockByNumber and the transaction table contained within
+  it.
 }
 \description{
-Queries the blockchain and returns a data.frame of transactions for either a given
-number of blocks or a specified block range of blocks.
+Queries the blockchain and returns a data.frame of transactions for either a
+given number of blocks or a specified block range of blocks.
 }
 \examples{
 getBlockTransactions(100)

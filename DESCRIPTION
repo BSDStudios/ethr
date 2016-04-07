@@ -13,6 +13,7 @@ Imports:
     httr,
     plyr,
     Rmpfr,
+    igraph,
     gmp
 Suggests:
     dplyr,
