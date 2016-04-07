@@ -1,4 +1,4 @@
-#' nodesPlots
+#' nodesPlot
 #'
 #' @description Plots the nodes/accounts and transaction between said accounts for input transactions data.
 #' The nodes with high in and out degree activity are coloured. The threshold value is 10. 
@@ -11,7 +11,7 @@
 #' @return plot of the nodes and transaction for the input data.
 #' @import igraph
 #' @export
-nodesPlot <- function(table = transactions,degree_thres = 10, save_plot=FALSE){
+nodesPlot <- function(table = transactions, degree_thres = 10, save_plot = FALSE) {
   
   if(!is.data.frame(table)){
     stop("Please enter a data frame of transactions")
