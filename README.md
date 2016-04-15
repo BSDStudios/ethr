@@ -2,45 +2,49 @@ Ethr Package
 ================
 April 2016
 
--   Description
--   Before using ethr
--   Base Functions
--   Higher functions
--   Examples
-    -   Getting the Blockchain Data into R
-    -   Investigating the Data
-    -   Visualising the data
+-   [Description](#description)
+-   [Installation](#installation)
+-   [Setup](#setup)
+-   [Base Functions](#base-functions)
+-   [Helper functions](#helper-functions)
+-   [Examples](#examples)
+    -   [Getting the Blockchain Data into R](#getting-the-blockchain-data-into-r)
+    -   [Investigating the Data](#investigating-the-data)
+    -   [Visualising the data](#visualising-the-data)
 
 Description
 ===========
 
 The 'ethr' R package is an interface for accessing Ethereum blockchain data in R, querying the Ethereum Blockchain via the JSON-RPC API.
 
-'ethr' provides several convenience and helper functions, such as:
+ethr provides several convenience and helper functions, such as:
 
+-   Handling of hexadecimal conversion
 -   Access block data
 -   Access transaction data/transaction receipts
 -   Bulk download management
--   Handling of hexadecimal conversion
--   Initial (limited) visualisation
 
-Before using ethr
-=================
+Installation
+============
 
-To set up geth, see <https://github.com/ethereum/go-ethereum/wiki/Getting-Geth>
+The package will be submitted to CRAN soon, until then you can install it from Github using devtools:
 
-The blockchain needs to be downloaded and continuously updating). So in a terminal, to set geth running (and pipe the log to a different terminal), use :
+``` r
+# install.packages("devtools")
+devtools::install_github("BSDStudios/ethr")
+```
 
-geth --rpc --rpccorsdomain localhost --autodag console 2\>\>/dev/ttysxxx
+Setup
+=====
 
-where xxx is the number of the terminal you wish to pipe the blockchain sync to.
+Data is extracted from your local `chaindata` folder using a running geth instance, see <https://github.com/ethereum/go-ethereum/wiki/Getting-Geth> for details.
 
-Once the blockchain is downloaded, the R package can be used. The ethr library contains 16 base functions for pulling as accessing the Ethereum blockchain data as well as 4 functions which, using these base functions, allow you to access and parse the data into easily readable formats.
+note: ensure that you have added the `--rpc --rpccorsdomain localhost` options when initialising geth to ensure that the package can access the JSON-RPC API.
 
 Base Functions
 ==============
 
-These functions allow the Ethereum blockchain to be queried.
+These base functions are direct implementations of the available JSON-RPC methods detailed here, <https://github.com/ethereum/wiki/wiki/JSON-RPC> and replicate their functionality as much as possible.
 
 -   eth\_coinbase - Returns the client coinbase address.
 -   eth\_gasPrice - Returns the current price per gas in wei.
@@ -59,7 +63,7 @@ These functions allow the Ethereum blockchain to be queried.
 -   eth\_getTransactionByBlockNumberAndIndex - Returns information about a transaction by block number and transaction index position.
 -   eth\_getTransactionReceipt - Returns the receipt of a transaction by transaction hash.
 
-Higher functions
+Helper functions
 ================
 
 These functions use the base function, queering the blockchain, but make it easier for the user to download larger chunks of data and to have more control over where those chunks are taken from.
@@ -88,20 +92,10 @@ Load the package using the library:
 library(ethr)
 ```
 
-Addition useful libraries are:
-
-``` r
-library(plyr)
-library(dplyr)
-library(httr)
-library(igraph)
-library(gmp)
-```
-
 If we want to look at the 7.00am to 7.05 am on last day of March, we can use getTransactionInTimeFrame to get the numbers of those blocks.
 
 ``` r
-blocks <- getTransactionInTimePeriod("2016-03-31 07:00:00 GMT","2016-03-31 07:05:00 GMT")
+blocks <- getTransactionInTimePeriod("2016-03-31 07:00:00 GMT", "2016-03-31 07:05:00 GMT")
 blocks
 ```
 
@@ -110,11 +104,11 @@ blocks
 Using getBlockTransactions will return the transaction in those. It also returns the blocks which have no transactions (the code below will remove these blocks).
 
 ``` r
-transactions <- getBlockTransactions(start_block=blocks[1],end_block = blocks[2]) 
+transactions <- getBlockTransactions(start_block = blocks[1], end_block = blocks[2]) 
 ```
 
 ``` r
-transactions <- transactions[complete.cases(transactions),]
+transactions <- transactions[complete.cases(transactions), ]
 dim(transactions)
 ```
 
@@ -142,20 +136,19 @@ library(doParallel)
 
 workers <- makeCluster(3)
 registerDoParallel(workers)
-transactions2 <- getBlockTransactions(start_block=blocks[1],end_block = blocks[2],parallel=TRUE) 
+transactions2 <- getBlockTransactions(start_block = blocks[1], end_block = blocks[2], parallel = TRUE) 
 ```
 
 Another option, if you are want to access a very large chunk of the blockchain, is to use "bulkBlockDownload.R".
 
 ``` r
-BulkDownload <- bulkBlockDownload(start_block=blocks[1], end_block=blocks[1], data_dir, chunk_size = 50000,
-                              parallel = TRUE, cores = 3) 
+BulkDownload <- bulkBlockDownload(start_block = blocks[1], end_block = blocks[2], data_dir, chunk_size = 50000, parallel = TRUE, cores = 3) 
 ```
 
 If only the block header data is required:
 
 ``` r
-block_headers <- getBlockHeaders(start_block=blocks[1],end_block = blocks[2])
+block_headers <- getBlockHeaders(start_block = blocks[1], end_block = blocks[2])
 ```
 
 This gives the following information:
@@ -177,38 +170,44 @@ To investigate a transaction further the receipt can be found using:
 
 ``` r
 SingleTrans <- transactions[1,]$trHash
-reciept <- eth_getTransactionReceipt(SingleTrans)
-reciept
+receipt <- eth_getTransactionReceipt(SingleTrans)
+receipt
 ```
 
+    ## $blockHash
+    ## [1] "0x993e75e6443b608bf2b50f24c911141463c2099447d99e4c6e66457e9f51e2b6"
+    ## 
+    ## $blockNumber
+    ## [1] "0x130fd8"
+    ## 
+    ## $contractAddress
+    ## NULL
+    ## 
+    ## $cumulativeGasUsed
+    ## [1] "0x5208"
+    ## 
+    ## $from
+    ## [1] "0x2a65aca4d5fc5b5c859090a6c34d164135398226"
+    ## 
+    ## $gasUsed
+    ## [1] "0x5208"
+    ## 
+    ## $logs
+    ## list()
+    ## 
+    ## $to
+    ## [1] "0x122a865ece094d39060b064436fb8823b29bbb06"
+    ## 
     ## $transactionHash
     ## [1] "0x90f30b198068f8c9f557c1024f81ea1f0caca49577100cb8f611b34c12d01305"
     ## 
     ## $transactionIndex
     ## [1] "0x0"
-    ## 
-    ## $blockNumber
-    ## [1] "0x130fd8"
-    ## 
-    ## $blockHash
-    ## [1] "0x993e75e6443b608bf2b50f24c911141463c2099447d99e4c6e66457e9f51e2b6"
-    ## 
-    ## $cumulativeGasUsed
-    ## [1] "0x5208"
-    ## 
-    ## $gasUsed
-    ## [1] "0x5208"
-    ## 
-    ## $contractAddress
-    ## NULL
-    ## 
-    ## $logs
-    ## list()
 
 Here the gas used is for that single transaction. This, and other hex values, can be converted using
 
 ``` r
-hexDec(reciept$gasUsed)
+hexDec(receipt$gasUsed)
 ```
 
     ## 1 'mpfr' number of precision  16   bits 
@@ -221,10 +220,10 @@ There is also a 'decHex' to convert from decimal to hex. This may be needed in f
 Investigating a block can be done using either the block hash or the block number.
 
 ``` r
-blockNum  <- transactions[49,]$blNumber
-blockHash <- transactions[49,]$blhash
-eth_getBlockByNumber(decHex(blockNum),full_list = FALSE)
-eth_getBlockByHash(blockHash,full_list = FALSE)          
+blockNum  <- transactions[49, ]$blNumber
+blockHash <- transactions[49, ]$blHash
+eth_getBlockByNumber(decHex(blockNum), full_list = FALSE)
+eth_getBlockByHash(blockHash, full_list = FALSE)          
 ```
 
 Visualising the data
@@ -233,7 +232,7 @@ Visualising the data
 The function 'nodesPlot' is a preliminary function which allows the user to visualize the nodes and transactions using igraph. The function asks for a threshold, which relates to the number of transactions sent of received by an account (i.e., the in- or -out degree). Any accounts above this threshold are then highlighted on the plot. Also transactions which are greater than 3x the standard deviation of the value of the transactions are highlighted (darker arrows). (Note: this function works better in Rstudio than on command line. If on command line, un-comment "x11()" on line 82.)
 
 ``` r
-nodesPlot(table=transactions,degree_thres=20,save_plot=TRUE)
+nodesPlot(table = transactions, degree_thres = 20, save_plot = TRUE)
 ```
 
-![](nodesmap.png)
+![](img/nodesmap.png)

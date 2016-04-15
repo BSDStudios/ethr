@@ -2,7 +2,7 @@
 % Please edit documentation in R/nodePlot.R
 \name{nodesPlot}
 \alias{nodesPlot}
-\title{nodesPlots}
+\title{nodesPlot}
 \usage{
 nodesPlot(table = transactions, degree_thres = 10, save_plot = FALSE)
 }
@@ -20,9 +20,5 @@ plot of the nodes and transaction for the input data.
 Plots the nodes/accounts and transaction between said accounts for input transactions data.
 The nodes with high in and out degree activity are coloured. The threshold value is 10. 
 Large transactions (greater than 3 standard deviation from the mean transaction value) are shown with black arrows.
-}
-\examples{
-nodesPlot(transactions)
-nodesPlot(transaction,degree_thres=50,save_plot=TRUE)
 }
 

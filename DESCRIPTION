@@ -1,6 +1,6 @@
 Package: ethr
-Title: Scrape and Parse Data from the Ethereum Blockchain
-Version: 0.9.9
+Title: Ethereum Blockchain Data for R
+Version: 0.9.10
 Authors@R: as.person(c(
     "Ben Leland <ben.leland@gmail.com> [aut, cre]", 
     "Kate Harris <kateharris142@gmail.com> [aut]"
@@ -8,7 +8,7 @@ Authors@R: as.person(c(
 Description: Tools for querying and analysing Ethereum blockchain data by POST
     method to the geth JSON-RPC API.
 Depends:
-    R (>= 3.2.3)
+    R (>= 3.1.0)
 Imports:
     httr,
     plyr,
