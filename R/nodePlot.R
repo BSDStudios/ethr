@@ -9,7 +9,6 @@
 #' @param save_plot, save the plot to disk. Default is FALSE.
 #'
 #' @return plot of the nodes and transaction for the input data.
-#' @import igraph
 #' @export
 nodesPlot <- function(table = transactions, degree_thres = 10, save_plot = FALSE) {
   
@@ -33,7 +32,7 @@ nodesPlot <- function(table = transactions, degree_thres = 10, save_plot = FALSE
   #### start preparing data and putting in format to plot
   nodesg2 <- data.frame()
   nodesg2 <- rbind(nodesg2,data.frame(from=data$trFrom, to=data$trTo,value=data$trValueEth))
-  btcg2 <- ddply(nodesg2, c("from", "to"), summarize, value=sum(value))
+  btcg2 <- plyr::ddply(nodesg2, c("from", "to"), plyr::summarize, value=sum(value))
 
 
   

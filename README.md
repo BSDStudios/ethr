@@ -235,4 +235,4 @@ The function 'nodesPlot' is a preliminary function which allows the user to visu
 nodesPlot(table = transactions, degree_thres = 20, save_plot = TRUE)
 ```
 
-![](img/nodesmap.png)
+![](nodesmap.png)

@@ -43,23 +43,3 @@ getBlockHeaders <- function(n_blocks = NULL, start_block = NULL,
   
   return(transactions)
 }
-
-collateBlockData <- function(block) {
-  
-  block_data <- data.frame(
-    blNumber = as.numeric(hexDec(block$number)),
-    blTimestamp = as.POSIXct(as.numeric(hexDec(block$timestamp)), origin = "1970-01-01"),
-    blTimeHash = block$timestamp,
-    blGasUsed = as.numeric(hexDec(block$gasUsed)),
-    blGasLimit = as.numeric(hexDec(block$gasLimit)),
-    blhash = block$hash,
-    blMiner = block$miner,
-    blDifficulty = as.numeric(hexDec(block$difficulty)),
-    blSizeBytes = as.numeric(hexDec(block$size)),
-    blParent = block$parentHash,
-    blReceiptRoot = block$receiptRoot,
-    blStateRoot = block$stateRoot,
-    blTransactionsRoot = block$transactionsRoot)
-  
-  return(block_data)
-}
