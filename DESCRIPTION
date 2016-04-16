@@ -17,7 +17,10 @@ Imports:
     gmp
 Suggests:
     dplyr,
-    doParallel
+    doParallel,
+    knitr,
+    rmarkdown
 License: MIT
 LazyData: true
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr
