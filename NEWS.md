@@ -3,8 +3,9 @@
 ## New
 
 * News file!
-* Moved example code to 'exmaples' vignette, to be expanded at a later date
+* Simplified .readme - Moved example code to 'exmaples' vignette, to be expanded at a later date
 
 ## Bug fixes and corrections
 
-* Typos in README.md
+* Typos in README.md (#1)
+* bulkBlockDownload.R now creates 'ethr_blocks' folder automatically (#2)

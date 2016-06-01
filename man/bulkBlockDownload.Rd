@@ -12,8 +12,7 @@ bulkBlockDownload(start_block, end_block, data_dir, chunk_size = 50000,
 
 \item{end_block}{numeric, Ending block number.}
 
-\item{data_dir}{path, Desired folder for storing analysis table in - needs to
-exist before running.}
+\item{data_dir}{path, Desired folder for storing analysis table in.}
 
 \item{chunk_size}{numeric, Chunk size to Download.}
 

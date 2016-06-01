@@ -7,8 +7,7 @@
 #' 
 #' @param start_block numeric, Starting block number.
 #' @param end_block numeric, Ending block number.
-#' @param data_dir path, Desired folder for storing analysis table in - needs to
-#'   exist before running.
+#' @param data_dir path, Desired folder for storing analysis table in.
 #' @param chunk_size numeric, Chunk size to Download.
 #' @param parallel logical, Should plyr operate in parallel.
 #' @param cores numeric, number of cores to be intialised. Suggested n - 1, 
@@ -19,6 +18,8 @@
 #' @export
 bulkBlockDownload <- function(start_block, end_block, data_dir, chunk_size = 50000,
                               parallel = TRUE, cores = 3) {
+  
+  dir.create(file.path(paste0(data_dir, "/ethr_blocks")), showWarnings = FALSE)
   
   workers <-parallel::makeCluster(cores)
   doParallel::registerDoParallel(workers)

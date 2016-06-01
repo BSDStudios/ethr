@@ -1,8 +1,8 @@
 Package: ethr
 Title: Ethereum Blockchain Data for R
-Version: 0.9.10
+Version: 0.9.11
 Authors@R: as.person(c(
-    "Ben Leland <ben.leland@gmail.com> [aut, cre]", 
+    "Ben Leland <ben.leland@electron.org.uk> [aut, cre]", 
     "Kate Harris <kateharris142@gmail.com> [aut]"
   ))
 Description: Tools for querying and analysing Ethereum blockchain data by POST

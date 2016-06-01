@@ -1,6 +1,6 @@
 ---
 title: "Examples"
-author: "Vignette Author"
+author: "Kate Harris"
 date: "April 2016"
 output: rmarkdown::html_vignette
 vignette: >
