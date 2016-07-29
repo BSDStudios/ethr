@@ -1,19 +1,17 @@
 Package: ethr
 Title: Ethereum Blockchain Data for R
-Version: 0.9.11
+Version: 0.9.12
 Authors@R: as.person(c(
     "Ben Leland <ben.leland@electron.org.uk> [aut, cre]", 
     "Kate Harris <kateharris142@gmail.com> [aut]"
   ))
-Description: Tools for querying and analysing Ethereum blockchain data by POST
-    method to the geth JSON-RPC API.
+Description: Tools for querying and analysing Ethereum blockchain data via the JSON-RPC API.
 Depends:
     R (>= 3.1.0)
 Imports:
     httr,
     plyr,
     Rmpfr,
-    igraph,
     gmp
 Suggests:
     dplyr,
@@ -23,4 +21,4 @@ Suggests:
 License: MIT
 LazyData: true
 RoxygenNote: 5.0.1
-VignetteBuilder: knitr
+VignetteBuilder: knitr  

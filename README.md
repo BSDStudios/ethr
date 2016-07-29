@@ -33,9 +33,12 @@ devtools::install_github("BSDStudios/ethr")
 Setup
 =====
 
-Data is extracted from your local `chaindata` folder using a running geth instance, see <https://github.com/ethereum/go-ethereum/wiki/Getting-Geth> for details.
+The package connects to either a Geth or Parity client running on a full Ethereum node via the JSON-RPC interface <https://github.com/ethereum/wiki/wiki/JSON-RPC>.
 
-note: ensure that you have added the `--rpc --rpccorsdomain localhost` options when initialising geth to ensure that the package can access the JSON-RPC API.
+Please enable the following flags for Geth and Parity respectively to ensure that they can access the client.
+
+-   Geth: `--rpc --rpccorsdomain localhost`
+-   Parity: `--jsonrpc-cors '*' --geth`
 
 Base Functions
 ==============
@@ -68,15 +71,6 @@ These functions use the base function, queering the blockchain, but make it easi
 
 -   getBlockHeaders will return just the block header data for a given number of blocks or specified range of blocks.getBlockHeaders will return just the block header data for a given number of blocks or specified range of blocks.
 
--   getTransactionInTimeFrame will return the block numbers closest to two given times and dates. (This can be then input into getBockTransations to get the transactions during this time period.)
-
 -   bulkBlockDownload.R breaks a large block range up and manages the download size. All downloaded blocks will be stored in a ethr\_blocks folder in the data\_dir.
 
 -   getBlockRange - Returns the minimum and maximum blocks that are currently downloaded for the analysis table. Note: this does not check for continuity, only returns min and max vales.
-
--   nodesPlot - creates a basic node plot showing the transactions and accounts within the input data frame. Accounts with high in- or -out degree (i.e. receive or sent large number of transactions) can be highlighted and the threshold for that transaction level set. Also large transactions (more than 3x standard deviations from mean transaction value) are highlighted.
-
-Examples
-========
-
-See the 'examples' vignette for details.
