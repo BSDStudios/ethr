@@ -2,7 +2,7 @@
 
 ## Update
 
-We have removed some of the more complex functions as we redesign and update the pacakge. Work is continuing on the a final v1.0 release which will encapsulat most of the RPC methods available and a couple of basica convenience functions. If you still require these then you should be able to use an older version to acces them still, contact us if you are having any problems.
+We have removed some of the more complex functions as we redesign and update the pacakge, this is in part due to compatibility issues and also wanted a simple package to interface with. Work is continuing on the a final v1.0 release which will encapsulate most of the RPC methods available and a couple of basic convenience functions. If you still require the previous functions then you should be able to use an older version to access them still, contact us if you are having any problems.
 
 ## New
 
