@@ -6,7 +6,6 @@
 -   [Setup](#setup)
 -   [Base Functions](#base-functions)
 -   [Helper functions](#helper-functions)
--   [Examples](#examples)
 
 Description
 ===========
