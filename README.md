@@ -37,7 +37,7 @@ The package connects to either a Geth or Parity client running on a full Ethereu
 Please enable the following flags for Geth and Parity respectively to ensure that they can access the client.
 
 -   Geth: `--rpc --rpccorsdomain localhost`
--   Parity: `--jsonrpc-cors '*' --geth`
+-   Parity: `--jsonrpc-cors '*' --geth` - not connecting in latest build, we're investigating.
 
 Base Functions
 ==============
