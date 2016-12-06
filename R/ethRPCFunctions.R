@@ -19,7 +19,7 @@ eth_coinbase <- function(rpc_address = "http://localhost:8545") {
                       id = jsonlite::unbox(64)))
   
   post_return <- httr::POST(url = rpc_address, 
-                           add_headers("Content-Type" = "application/json"),
+                           httr::add_headers("Content-Type" = "application/json"),
                            body = body)
   
   acc_no <- httr::content(post_return, "parsed")$result
@@ -42,7 +42,7 @@ eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
                           id = jsonlite::unbox(73)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -68,7 +68,7 @@ eth_accounts <- function(rpc_address = "http://localhost:8545") {
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -94,7 +94,7 @@ eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
                            id = jsonlite::unbox(83)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)  
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -122,7 +122,7 @@ eth_getBalance <- function(address, block_number, rpc_address = "http://localhos
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                           add_headers("Content-Type" = "application/json"),
+                           httr::add_headers("Content-Type" = "application/json"),
                            body = post_body)
   
   balance <- httr::content(post_return, "parsed")$result
@@ -150,7 +150,7 @@ eth_getStorageAt <- function(address, position_number, block_number,
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                               add_headers("Content-Type" = "application/json"),
+                               httr::add_headers("Content-Type" = "application/json"),
                                body = post_body)
   
   storage <-httr::content(post_return)$result
@@ -176,7 +176,7 @@ eth_getTransactionCount <- function(address, block_number, rpc_address = "http:/
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                             add_headers("Content-Type" = "application/json"),
+                             httr::add_headers("Content-Type" = "application/json"),
                              body = post_body)
   
   trans_count <-httr::content(post_return)$result
@@ -201,7 +201,7 @@ eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http:/
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                                add_headers("Content-Type" = "application/json"),
+                                httr::add_headers("Content-Type" = "application/json"),
                                 body = post_body)
   
   block_transaction_count <- httr::content(post_return)$result
@@ -226,7 +226,7 @@ eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "ht
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                                add_headers("Content-Type" = "application/json"),
+                                httr::add_headers("Content-Type" = "application/json"),
                                 body = post_body)
   
   block_trans <- httr::content(post_return)$result
@@ -252,7 +252,7 @@ eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -301,7 +301,7 @@ eth_getBlockByHash <-function(block_hash, full_list = FALSE,
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                                  add_headers("Content-Type" = "application/json"),
+                                  httr::add_headers("Content-Type" = "application/json"),
                                   body = post_body)
   
   block_data <- httr::content(post_return)$result
@@ -348,7 +348,7 @@ eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                             add_headers("Content-Type" = "application/json"),
+                             httr::add_headers("Content-Type" = "application/json"),
                              body = post_body)
   
   block_data <- httr::content(post_return)$result
@@ -384,7 +384,7 @@ eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://loc
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -413,7 +413,7 @@ eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -453,7 +453,7 @@ eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number =
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                            add_headers("Content-Type" = "application/json"),
+                            httr::add_headers("Content-Type" = "application/json"),
                             body = post_body)
   
   post_content <- httr::content(post_return, as = "parsed")
@@ -487,7 +487,7 @@ eth_getTransactionReceipt <- function(transaction_hash, rpc_address = "http://lo
                            id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
-                                    add_headers("Content-Type" = "application/json"),
+                                    httr::add_headers("Content-Type" = "application/json"),
                                     body = post_body)
   
   post_content <- httr::content(post_return)$result
