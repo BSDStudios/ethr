@@ -40,7 +40,7 @@ getBlockTransactions <- function(n_blocks = NULL, start_block = NULL,
     .parallel = parallel,
     .fun = function(x) {
       block <- eth_getBlockByNumber(block_number = decHex(x), full_list = TRUE)
-      block_data <- collateBlockData(block)
+        block_data <- collateBlockData(block)
       
       if(length(block$transactions) > 0) {
         transaction_data <- collateTransactionData(block$transactions)
@@ -70,9 +70,10 @@ collateBlockData <- function(block) {
     blDifficulty = as.numeric(hexDec(block$difficulty)),
     blSizeBytes = as.numeric(hexDec(block$size)),
     blParent = block$parentHash,
-    blReceiptRoot = block$receiptsRoot,
+    blReceiptsRoot = block$receiptsRoot,
     blStateRoot = block$stateRoot,
-    blTransactionsRoot = block$transactionsRoot)
+    blTransactionsRoot = block$transactionsRoot,
+    blNumberOfUncles = length(block$uncles))
   
   return(block_data)
 }

@@ -6,8 +6,12 @@
 #' @param n_blocks numeric, Number of blocks to extract back from the latest block. 
 #' @param start_block numeric, Starting block number for extraction. 
 #' @param end_block numeric, Ending block for extraction, inclusive. 
-#' @param parallel 
-#' @param rpc_address, The address of the RPC API. 
+#' @param parallel boolean, invokes a parallelised plyr loop
+#' @param rpc_address, The address of the RPC API.
+#' 
+#' To initialise parallel workers:
+#' workers <-makeCluster(3)
+#' doParallel::registerDoParallel(workers) 
 #'
 #' @return data.frame Block header data of requested blocks.
 #' @export
