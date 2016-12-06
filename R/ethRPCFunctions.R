@@ -13,10 +13,10 @@
 #' @export
 eth_coinbase <- function(rpc_address = "http://localhost:8545") {
   
-  body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                      method = unbox("eth_coinbase"), 
+  body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                      method = jsonlite::unbox("eth_coinbase"), 
                       params = I(NULL), 
-                      id = unbox(64)))
+                      id = jsonlite::unbox(64)))
   
   post_return <- httr::POST(url = rpc_address, 
                            add_headers("Content-Type" = "application/json"),
@@ -36,10 +36,10 @@ eth_coinbase <- function(rpc_address = "http://localhost:8545") {
 #' @return hex value of the current gas price in wei.
 #' @export
 eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                          method = unbox("eth_gasPrice"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                          method = jsonlite::unbox("eth_gasPrice"), 
                           params = I(NULL), 
-                          id = unbox(73)))
+                          id = jsonlite::unbox(73)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -62,10 +62,10 @@ eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
 #' @export
 eth_accounts <- function(rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_accounts"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_accounts"), 
                            params = I(NULL), 
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -88,10 +88,10 @@ eth_accounts <- function(rpc_address = "http://localhost:8545") {
 #' @export
 eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_blockNumber"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_blockNumber"), 
                            params = I(NULL), 
-                           id = unbox(83)))
+                           id = jsonlite::unbox(83)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -116,10 +116,10 @@ eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
 #' @export
 eth_getBalance <- function(address, block_number, rpc_address = "http://localhost:8545") {
 
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getBalance"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getBalance"), 
                            params = c(address, block_number), 
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                            add_headers("Content-Type" = "application/json"),
@@ -144,10 +144,10 @@ eth_getBalance <- function(address, block_number, rpc_address = "http://localhos
 eth_getStorageAt <- function(address, position_number, block_number, 
                              rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getStorageAt"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getStorageAt"), 
                            params = c(address, position_number, block_number),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                                add_headers("Content-Type" = "application/json"),
@@ -170,10 +170,10 @@ eth_getStorageAt <- function(address, position_number, block_number,
 #' @export
 eth_getTransactionCount <- function(address, block_number, rpc_address = "http://localhost:8545") {
 
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getTransactionCount"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getTransactionCount"), 
                            params = c(address, block_number),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                              add_headers("Content-Type" = "application/json"),
@@ -195,10 +195,10 @@ eth_getTransactionCount <- function(address, block_number, rpc_address = "http:/
 #' @export
 eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http://localhost:8545") {
 
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getBlockTransactionCountByHash"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getBlockTransactionCountByHash"), 
                            params = c(block_hash),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                                 add_headers("Content-Type" = "application/json"),
@@ -220,10 +220,10 @@ eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http:/
 #' @export
 eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "http://localhost:8545"){
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getBlockTransactionCountByNumber"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getBlockTransactionCountByNumber"), 
                            params = c(block_number),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                                 add_headers("Content-Type" = "application/json"),
@@ -246,10 +246,10 @@ eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "ht
 #' @export
 eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getCode"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getCode"), 
                            params = c(address, block_number),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -295,10 +295,10 @@ eth_getBlockByHash <-function(block_hash, full_list = FALSE,
   
   full_list <- tolower(as.character(full_list))
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getBlockByHash"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getBlockByHash"), 
                            params = c(block_hash, full_list),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                                   add_headers("Content-Type" = "application/json"),
@@ -342,10 +342,10 @@ eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "
   
   full_list <- tolower(as.character(full_list))
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getBlockByNumber"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getBlockByNumber"), 
                            params = c(block_number, full_list),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                              add_headers("Content-Type" = "application/json"),
@@ -378,10 +378,10 @@ eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "
 #' @export
 eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getTransactionByHash"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getTransactionByHash"), 
                            params = c(transaction_hash),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -407,10 +407,10 @@ eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://loc
 eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x0", 
                                                   rpc_address = "http://localhost:8545") {
 
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getTransactionByBlockHashAndIndex"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getTransactionByBlockHashAndIndex"), 
                            params = c(block_hash, index_number),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -447,10 +447,10 @@ eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x
 eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number = "0x0",
                                                     rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getTransactionByBlockNumberAndIndex"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getTransactionByBlockNumberAndIndex"), 
                            params = c(block_number, index_number),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                             add_headers("Content-Type" = "application/json"),
@@ -481,10 +481,10 @@ eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number =
 #' @export
 eth_getTransactionReceipt <- function(transaction_hash, rpc_address = "http://localhost:8545") {
   
-  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
-                           method = unbox("eth_getTransactionReceipt"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = jsonlite::unbox("2.0"), 
+                           method = jsonlite::unbox("eth_getTransactionReceipt"), 
                            params = c(transaction_hash),
-                           id = unbox(1)))
+                           id = jsonlite::unbox(1)))
   
   post_return <- httr::POST(url = rpc_address,
                                     add_headers("Content-Type" = "application/json"),
