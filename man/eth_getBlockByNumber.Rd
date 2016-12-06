@@ -4,13 +4,13 @@
 \alias{eth_getBlockByNumber}
 \title{Eth getBlockByNumber}
 \usage{
-eth_getBlockByNumber(block_number, full_list,
+eth_getBlockByNumber(block_number, full_list = FALSE,
   rpc_address = "http://localhost:8545")
 }
 \arguments{
 \item{block_number}{hex value of a block number, or the string "earliest", "latest" or "pending".}
 
-\item{full_list}{Boolean, TRUE = full transaction objects, FALSE = only hashes of trasactions.}
+\item{full_list}{Boolean - TRUE = full transaction objects, FALSE = only hashes of trasactions.}
 
 \item{rpc_address}{The address of the RPC API.}
 }

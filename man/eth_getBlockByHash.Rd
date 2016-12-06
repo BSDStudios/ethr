@@ -4,13 +4,13 @@
 \alias{eth_getBlockByHash}
 \title{Eth getBlockByHash}
 \usage{
-eth_getBlockByHash(block_hash, full_list,
+eth_getBlockByHash(block_hash, full_list = FALSE,
   rpc_address = "http://localhost:8545")
 }
 \arguments{
 \item{block_hash}{32 Bytes - Hash of a block.}
 
-\item{full_list}{True = returns the full transaction objects, FALSE = only the hashes of the transactions.}
+\item{full_list}{Boolean - True = returns the full transaction objects, FALSE = only the hashes of the transactions.}
 
 \item{rpc_address}{The address of the RPC API.}
 }

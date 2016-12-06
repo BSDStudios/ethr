@@ -1,5 +1,5 @@
-# These are all basic functions to connect to the geth RPC interface.
-# They are designed to replicate the base functionality within geth and facilitate
+# These are all basic functions to connect to the geth/parity JSON RPC interface.
+# They are designed to replicate the base functionality and facilitate
 # pulling data into R and onto further helper functions. Where possible these mimic
 # the behaviour of the functions that can be found here, [https://github.com/ethereum/wiki/wiki/JSON-RPC]
 
@@ -12,9 +12,18 @@
 #' @return 20 bytes - the current coinbase address.
 #' @export
 eth_coinbase <- function(rpc_address = "http://localhost:8545") {
-  body <- list(jsonrpc = "2.0", method = "eth_coinbase", params = "", id = 64)
-  acc_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  acc_no <- httr::content(acc_return, "parsed")$result
+  
+  body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                      method = unbox("eth_coinbase"), 
+                      params = I(NULL), 
+                      id = unbox(64)))
+  
+  post_return <- httr::POST(url = rpc_address, 
+                           add_headers("Content-Type" = "application/json"),
+                           body = body)
+  
+  acc_no <- httr::content(post_return, "parsed")$result
+  
   return(acc_no)
 }
 
@@ -27,10 +36,19 @@ eth_coinbase <- function(rpc_address = "http://localhost:8545") {
 #' @return hex value of the current gas price in wei.
 #' @export
 eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_gasPrice", params = "", id = 73)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                          method = unbox("eth_gasPrice"), 
+                          params = I(NULL), 
+                          id = unbox(73)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   gas_price <- post_content$result
+  
   return(gas_price)
 }
 
@@ -43,10 +61,20 @@ eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
 #' @return 20 Bytes - addresses owned by the client.
 #' @export
 eth_accounts <- function(rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_accounts", params = "", id = 1)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_accounts"), 
+                           params = I(NULL), 
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   accounts <- unlist(post_content$result)
+  
   return(accounts)
 }
 
@@ -59,10 +87,20 @@ eth_accounts <- function(rpc_address = "http://localhost:8545") {
 #' @return hex value of the current block number the client is on.
 #' @export
 eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_blockNumber", params = "", id = 83)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_blockNumber"), 
+                           params = I(NULL), 
+                           id = unbox(83)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)  
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   block_number <- post_content$result
+  
   return(block_number)
 }
 
@@ -77,11 +115,19 @@ eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
 #' @return hex value of the current balance in wei.
 #' @export
 eth_getBalance <- function(address, block_number, rpc_address = "http://localhost:8545") {
-  body <- list(jsonrpc = "2.0", method = "eth_getBalance", 
-               params = list(address, block_number), id = 1)
-  bal_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  bal_h <- httr::content(bal_return, "parsed")$result
-  return(bal_h)
+
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getBalance"), 
+                           params = c(address, block_number), 
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                           add_headers("Content-Type" = "application/json"),
+                           body = post_body)
+  
+  balance <- httr::content(post_return, "parsed")$result
+  
+  return(balance)
 }
 
 
@@ -97,10 +143,18 @@ eth_getBalance <- function(address, block_number, rpc_address = "http://localhos
 #' @export
 eth_getStorageAt <- function(address, position_number, block_number, 
                              rpc_address = "http://localhost:8545") {
-  body <- list(jsonrpc = "2.0", method = "eth_getStorageAt",
-               params = list(address, position_number, block_number), id = 1)
-  storage_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  storage <-httr::content(storage_return)$result
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getStorageAt"), 
+                           params = c(address, position_number, block_number),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                               add_headers("Content-Type" = "application/json"),
+                               body = post_body)
+  
+  storage <-httr::content(post_return)$result
+  
   return(storage)
 }
 
@@ -115,10 +169,18 @@ eth_getStorageAt <- function(address, position_number, block_number,
 #' @return hex of the number of transactions send from this address.
 #' @export
 eth_getTransactionCount <- function(address, block_number, rpc_address = "http://localhost:8545") {
-  body <- list(jsonrpc = "2.0", method = "eth_getTransactionCount",
-               params = list(address, block_number), id = 1)
-  trans_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  trans_count <-httr::content(trans_return)$result
+
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getTransactionCount"), 
+                           params = c(address, block_number),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                             add_headers("Content-Type" = "application/json"),
+                             body = post_body)
+  
+  trans_count <-httr::content(post_return)$result
+  
   return(trans_count)
 }
 
@@ -132,11 +194,19 @@ eth_getTransactionCount <- function(address, block_number, rpc_address = "http:/
 #' @return hex value of the number of transactions in this block.
 #' @export
 eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http://localhost:8545") {
-  body <- list(jsonrpc = "2.0", method = "eth_getBlockTransactionCountByHash",
-               params = list(block_hash), id = 1)
-  BH_trans_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  blockH_trans <- httr::content(BH_trans_return)$result
-  return(blockH_trans)
+
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getBlockTransactionCountByHash"), 
+                           params = c(block_hash),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                                add_headers("Content-Type" = "application/json"),
+                                body = post_body)
+  
+  block_transaction_count <- httr::content(post_return)$result
+  
+  return(block_transaction_count)
 }
 
 
@@ -149,10 +219,18 @@ eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http:/
 #' @return QUANTITY - integer of the number of transactions in this block, hex format
 #' @export
 eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "http://localhost:8545"){
-  body <- list(jsonrpc = "2.0", method = "eth_getBlockTransactionCountByNumber",
-               params = list(block_number), id = 1)
-  BN_trans_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  block_trans <- httr::content(BN_trans_return)$result
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getBlockTransactionCountByNumber"), 
+                           params = c(block_number),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                                add_headers("Content-Type" = "application/json"),
+                                body = post_body)
+  
+  block_trans <- httr::content(post_return)$result
+  
   return(block_trans)
 }
 
@@ -167,11 +245,20 @@ eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "ht
 #' @return the code from the given address.
 #' @export
 eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_getCode", 
-                    params = list(address, block_number), id = 1)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getCode"), 
+                           params = c(address, block_number),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   code <- post_content$result
+  
   return(code)
 }
 
@@ -181,7 +268,7 @@ eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8
 #' Returns information about a block from a hash.
 #'
 #' @param block_hash 32 Bytes - Hash of a block.
-#' @param full_list True = returns the full transaction objects, FALSE = only the hashes of the transactions.
+#' @param full_list Boolean - True = returns the full transaction objects, FALSE = only the hashes of the transactions.
 #' @param rpc_address The address of the RPC API.
 #' @return number: QUANTITY - the block number. null when its pending block.
 #' @return hash: DATA, 32 Bytes - hash of the block. null when its pending block.
@@ -203,15 +290,22 @@ eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8
 #' @return transactions: Array - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
 #' @return uncles: Array - Array of uncle hashes.
 #' @export
-eth_getBlockByHash <-function(block_hash,full_list,
+eth_getBlockByHash <-function(block_hash, full_list = FALSE,
                               rpc_address = "http://localhost:8545") {
-  full_list<- as.logical(full_list)
-  body <- list(jsonrpc = "2.0",
-               method = "eth_getBlockByHash",
-               params = list(block_hash, full_list),
-               id = 1)
-  block_hash_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  block_data <- httr::content(block_hash_return)$result
+  
+  full_list <- tolower(as.character(full_list))
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getBlockByHash"), 
+                           params = c(block_hash, full_list),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                                  add_headers("Content-Type" = "application/json"),
+                                  body = post_body)
+  
+  block_data <- httr::content(post_return)$result
+  
   return(block_data)
 }
 
@@ -222,7 +316,7 @@ eth_getBlockByHash <-function(block_hash,full_list,
 #'
 #' @param rpc_address The address of the RPC API.
 #' @param block_number hex value of a block number, or the string "earliest", "latest" or "pending".
-#' @param full_list Boolean, TRUE = full transaction objects, FALSE = only hashes of trasactions.
+#' @param full_list Boolean - TRUE = full transaction objects, FALSE = only hashes of trasactions.
 #'
 #' @return number: QUANTITY - the block number. null when its pending block.
 #' @return hash: DATA, 32 Bytes - hash of the block. null when its pending block.
@@ -244,14 +338,22 @@ eth_getBlockByHash <-function(block_hash,full_list,
 #' @return transactions: Array - Array of transaction objects, or 32 Bytes transaction hashes depending on the last given parameter.
 #' @return uncles: Array - Array of uncle hashes.
 #' @export
-eth_getBlockByNumber <-function(block_number, full_list, rpc_address = "http://localhost:8545") {
-  block_number <- as.character(block_number)
-  full_list <- as.logical(full_list)
-  body <- list(jsonrpc = "2.0", method = "eth_getBlockByNumber", 
-               params = list(block_number, full_list), id = 1)
-  block_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  block_dat <- httr::content(block_return)$result
-  return(block_dat)
+eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "http://localhost:8545") {
+  
+  full_list <- tolower(as.character(full_list))
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getBlockByNumber"), 
+                           params = c(block_number, full_list),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                             add_headers("Content-Type" = "application/json"),
+                             body = post_body)
+  
+  block_data <- httr::content(post_return)$result
+  
+  return(block_data)
 }
 
 
@@ -275,11 +377,20 @@ eth_getBlockByNumber <-function(block_number, full_list, rpc_address = "http://l
 #' @return input: DATA - the data send along with the transaction.
 #' @export
 eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_getTransactionByHash",
-                    params = list(transaction_hash), id = 1)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getTransactionByHash"), 
+                           params = c(transaction_hash),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   transaction_data <- post_content$result
+  
   return(transaction_data)
 }
 
@@ -295,11 +406,20 @@ eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://loc
 #' @export
 eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x0", 
                                                   rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_getTransactionByBlockHashAndIndex",
-                    params = list(block_hash, index_number), id = 1)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getTransactionByBlockHashAndIndex"), 
+                           params = c(block_hash, index_number),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   transaction_data <- post_content$result
+  
   return(transaction_data)
 }
 
@@ -326,11 +446,20 @@ eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x
 #' @export
 eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number = "0x0",
                                                     rpc_address = "http://localhost:8545") {
-  post_body <- list(jsonrpc = "2.0", method = "eth_getTransactionByBlockNumberAndIndex",
-                    params = list(block_number, index_number), id = 1)
-  post_return <- httr::POST(url = rpc_address, body = post_body, encode = "json")
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getTransactionByBlockNumberAndIndex"), 
+                           params = c(block_number, index_number),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                            add_headers("Content-Type" = "application/json"),
+                            body = post_body)
+  
   post_content <- httr::content(post_return, as = "parsed")
+  
   transaction_data <- post_content$result
+  
   return(transaction_data)
 }
 
@@ -351,11 +480,19 @@ eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number =
 #' @return logs: Array - Array of log objects, which this transaction generated.
 #' @export
 eth_getTransactionReceipt <- function(transaction_hash, rpc_address = "http://localhost:8545") {
-  body <- list(jsonrpc = "2.0", method = "eth_getTransactionReceipt", 
-               params = list(transaction_hash), id = 1)
-  TransReceipt_return <- httr::POST(url = rpc_address, body = body, encode = "json")
-  TransReceipt <- httr::content(TransReceipt_return)$result
-  return(TransReceipt)
+  
+  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+                           method = unbox("eth_getTransactionReceipt"), 
+                           params = c(transaction_hash),
+                           id = unbox(1)))
+  
+  post_return <- httr::POST(url = rpc_address,
+                                    add_headers("Content-Type" = "application/json"),
+                                    body = post_body)
+  
+  post_content <- httr::content(post_return)$result
+  
+  return(post_content)
 }
 
 

@@ -1,3 +1,11 @@
+# ethr 0.9.13
+
+## Update
+
+## New
+
+* Parity support
+
 # ethr 0.9.12
 
 ## Update
