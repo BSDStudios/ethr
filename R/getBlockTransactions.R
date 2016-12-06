@@ -70,7 +70,7 @@ collateBlockData <- function(block) {
     blDifficulty = as.numeric(hexDec(block$difficulty)),
     blSizeBytes = as.numeric(hexDec(block$size)),
     blParent = block$parentHash,
-    blReceiptRoot = block$receiptRoot,
+    blReceiptRoot = block$receiptsRoot,
     blStateRoot = block$stateRoot,
     blTransactionsRoot = block$transactionsRoot)
   

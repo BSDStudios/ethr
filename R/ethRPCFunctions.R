@@ -4,7 +4,7 @@
 # the behaviour of the functions that can be found here, [https://github.com/ethereum/wiki/wiki/JSON-RPC]
 
 
-#' Eth coinbase
+#' eth_coinbase
 #'
 #' Returns the client coinbase address.
 #'
@@ -28,7 +28,7 @@ eth_coinbase <- function(rpc_address = "http://localhost:8545") {
 }
 
 
-#' Eth gasPrice
+#' eth_gasPrice
 #'
 #' Returns the current price per gas in wei.
 #'
@@ -53,7 +53,7 @@ eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
 }
 
 
-#' Eth accounts
+#' eth_accounts
 #'
 #' Returns a list of addresses owned by client.
 #'
@@ -79,7 +79,7 @@ eth_accounts <- function(rpc_address = "http://localhost:8545") {
 }
 
 
-#' Eth blockNumber
+#' eth_blockNumber
 #'
 #' Returns the number of most recent block.
 #'
@@ -105,7 +105,7 @@ eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
 }
 
 
-#' Eth getBalance
+#' eth_getBalance
 #'
 #' Returns the balance of the account of given address.
 #'
@@ -131,7 +131,7 @@ eth_getBalance <- function(address, block_number, rpc_address = "http://localhos
 }
 
 
-#' Eth getStorageAt
+#' eth_getStorageAt
 #'
 #' Returns the value from a storage position at a given address.
 #'
@@ -159,7 +159,7 @@ eth_getStorageAt <- function(address, position_number, block_number,
 }
 
 
-#' Eth getTransactionCount
+#' eth_getTransactionCount
 #'
 #' Returns the number of transactions sent from an address - state at given block number.
 #'
@@ -185,7 +185,7 @@ eth_getTransactionCount <- function(address, block_number, rpc_address = "http:/
 }
 
 
-#' Eth gethBlockTransactionCountByHash
+#' eth_getBlockTransactionCountByHash
 #'
 #' Returns the number of transactions in a block from a block matching the given block hash.
 #'
@@ -210,7 +210,7 @@ eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http:/
 }
 
 
-#' Eth getBlockTransactionCountByNumber
+#' eth_getBlockTransactionCountByNumber
 #'
 #' Returns the number of transactions in a block from a block matching the given block number.
 #'
@@ -235,7 +235,7 @@ eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "ht
 }
 
 
-#' Eth getCode
+#' eth_getCode
 #'
 #' Returns code at a given address.
 #'
@@ -263,7 +263,7 @@ eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8
 }
 
 
-#' Eth getBlockByHash
+#' eth_getBlockByHash
 #'
 #' Returns information about a block from a hash.
 #'
@@ -310,7 +310,7 @@ eth_getBlockByHash <-function(block_hash, full_list = FALSE,
 }
 
 
-#' Eth getBlockByNumber
+#' eth_getBlockByNumber
 #'
 #' Returns information about a block from the block number.
 #'
@@ -357,7 +357,7 @@ eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "
 }
 
 
-#' Eth getTransactionByHash
+#' eth_getTransactionByHash
 #'
 #' Returns the information about a transaction requested by transaction hash.
 #'
@@ -395,7 +395,7 @@ eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://loc
 }
 
 
-#' Eth getTransactionByBlockHashAndIndex
+#' eth_getTransactionByBlockHashAndIndex
 #'
 #' Returns information about a transaction by block hash and transaction index position.
 #'
@@ -424,7 +424,7 @@ eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x
 }
 
 
-#' Eth getTransactionByBlockNumberAndIndex
+#' eth_getTransactionByBlockNumberAndIndex
 #'
 #' Returns information about a transaction by block number and transaction index position.
 #'
@@ -464,7 +464,7 @@ eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number =
 }
 
 
-#' Eth getTransactionReceipt
+#' eth_getTransactionReceipt
 #'
 #' Returns the receipt of a transaction by transaction hash.
 #'
