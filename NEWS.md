@@ -4,7 +4,7 @@
 
 ## New
 
-* Parity support
+* Parity support (woohoo!)
 
 # ethr 0.9.12
 

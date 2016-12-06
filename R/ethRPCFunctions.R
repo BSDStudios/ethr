@@ -13,7 +13,7 @@
 #' @export
 eth_coinbase <- function(rpc_address = "http://localhost:8545") {
   
-  body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                       method = unbox("eth_coinbase"), 
                       params = I(NULL), 
                       id = unbox(64)))
@@ -36,7 +36,7 @@ eth_coinbase <- function(rpc_address = "http://localhost:8545") {
 #' @return hex value of the current gas price in wei.
 #' @export
 eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                           method = unbox("eth_gasPrice"), 
                           params = I(NULL), 
                           id = unbox(73)))
@@ -62,7 +62,7 @@ eth_gasPrice <- function(rpc_address = "http://localhost:8545") {
 #' @export
 eth_accounts <- function(rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_accounts"), 
                            params = I(NULL), 
                            id = unbox(1)))
@@ -88,7 +88,7 @@ eth_accounts <- function(rpc_address = "http://localhost:8545") {
 #' @export
 eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_blockNumber"), 
                            params = I(NULL), 
                            id = unbox(83)))
@@ -116,7 +116,7 @@ eth_blockNumber <- function(rpc_address = "http://localhost:8545") {
 #' @export
 eth_getBalance <- function(address, block_number, rpc_address = "http://localhost:8545") {
 
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getBalance"), 
                            params = c(address, block_number), 
                            id = unbox(1)))
@@ -144,7 +144,7 @@ eth_getBalance <- function(address, block_number, rpc_address = "http://localhos
 eth_getStorageAt <- function(address, position_number, block_number, 
                              rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getStorageAt"), 
                            params = c(address, position_number, block_number),
                            id = unbox(1)))
@@ -170,7 +170,7 @@ eth_getStorageAt <- function(address, position_number, block_number,
 #' @export
 eth_getTransactionCount <- function(address, block_number, rpc_address = "http://localhost:8545") {
 
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getTransactionCount"), 
                            params = c(address, block_number),
                            id = unbox(1)))
@@ -195,7 +195,7 @@ eth_getTransactionCount <- function(address, block_number, rpc_address = "http:/
 #' @export
 eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http://localhost:8545") {
 
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getBlockTransactionCountByHash"), 
                            params = c(block_hash),
                            id = unbox(1)))
@@ -220,7 +220,7 @@ eth_getBlockTransactionCountByHash <- function(block_hash, rpc_address = "http:/
 #' @export
 eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "http://localhost:8545"){
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getBlockTransactionCountByNumber"), 
                            params = c(block_number),
                            id = unbox(1)))
@@ -246,7 +246,7 @@ eth_getBlockTransactionCountByNumber <- function(block_number, rpc_address = "ht
 #' @export
 eth_getCode <- function(address, block_number, rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getCode"), 
                            params = c(address, block_number),
                            id = unbox(1)))
@@ -295,7 +295,7 @@ eth_getBlockByHash <-function(block_hash, full_list = FALSE,
   
   full_list <- tolower(as.character(full_list))
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getBlockByHash"), 
                            params = c(block_hash, full_list),
                            id = unbox(1)))
@@ -342,7 +342,7 @@ eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "
   
   full_list <- tolower(as.character(full_list))
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getBlockByNumber"), 
                            params = c(block_number, full_list),
                            id = unbox(1)))
@@ -378,7 +378,7 @@ eth_getBlockByNumber <-function(block_number, full_list = FALSE, rpc_address = "
 #' @export
 eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getTransactionByHash"), 
                            params = c(transaction_hash),
                            id = unbox(1)))
@@ -407,7 +407,7 @@ eth_getTransactionByHash <- function(transaction_hash, rpc_address = "http://loc
 eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x0", 
                                                   rpc_address = "http://localhost:8545") {
 
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getTransactionByBlockHashAndIndex"), 
                            params = c(block_hash, index_number),
                            id = unbox(1)))
@@ -447,7 +447,7 @@ eth_getTransactionByBlockHashAndIndex <- function(block_hash, index_number = "0x
 eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number = "0x0",
                                                     rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getTransactionByBlockNumberAndIndex"), 
                            params = c(block_number, index_number),
                            id = unbox(1)))
@@ -481,7 +481,7 @@ eth_getTransactionByBlockNumberAndIndex <- function(block_number, index_number =
 #' @export
 eth_getTransactionReceipt <- function(transaction_hash, rpc_address = "http://localhost:8545") {
   
-  post_body <- toJSON(list(jsonrpc = unbox("2.0"), 
+  post_body <- jsonlite::toJSON(list(jsonrpc = unbox("2.0"), 
                            method = unbox("eth_getTransactionReceipt"), 
                            params = c(transaction_hash),
                            id = unbox(1)))
