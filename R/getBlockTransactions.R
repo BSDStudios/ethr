@@ -61,7 +61,8 @@ collateBlockData <- function(block) {
   
   block_data <- data.frame(
     blNumber = as.numeric(hexDec(block$number)),
-    blTimestamp = as.POSIXct(as.numeric(hexDec(block$timestamp)), origin = "1970-01-01"),
+    blTimestamp = as.numeric(hexDec(block$timestamp)),
+    blDateTime = as.POSIXct(as.numeric(hexDec(block$timestamp)), origin = "1970-01-01"),
     blTimeHash = block$timestamp,
     blGasUsed = as.numeric(hexDec(block$gasUsed)),
     blGasLimit = as.numeric(hexDec(block$gasLimit)),
