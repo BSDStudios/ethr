@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getStorageAt}
 \alias{eth_getStorageAt}
-\title{Eth getStorageAt}
+\title{eth_getStorageAt}
 \usage{
 eth_getStorageAt(address, position_number, block_number,
   rpc_address = "http://localhost:8545")

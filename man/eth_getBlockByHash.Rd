@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getBlockByHash}
 \alias{eth_getBlockByHash}
-\title{Eth getBlockByHash}
+\title{eth_getBlockByHash}
 \usage{
 eth_getBlockByHash(block_hash, full_list = FALSE,
   rpc_address = "http://localhost:8545")

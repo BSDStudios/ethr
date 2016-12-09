@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_blockNumber}
 \alias{eth_blockNumber}
-\title{Eth blockNumber}
+\title{eth_blockNumber}
 \usage{
 eth_blockNumber(rpc_address = "http://localhost:8545")
 }

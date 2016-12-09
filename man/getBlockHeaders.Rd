@@ -14,9 +14,13 @@ getBlockHeaders(n_blocks = NULL, start_block = NULL, end_block = NULL,
 
 \item{end_block}{numeric, Ending block for extraction, inclusive.}
 
-\item{parallel}{}
+\item{parallel}{boolean, invokes a parallelised plyr loop}
 
-\item{rpc_address, }{The address of the RPC API.}
+\item{rpc_address}{string, The address of the RPC API.
+
+To initialise parallel workers:
+workers <-makeCluster(3)
+doParallel::registerDoParallel(workers)}
 }
 \value{
 data.frame Block header data of requested blocks.

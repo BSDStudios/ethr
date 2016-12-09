@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getTransactionByBlockNumberAndIndex}
 \alias{eth_getTransactionByBlockNumberAndIndex}
-\title{Eth getTransactionByBlockNumberAndIndex}
+\title{eth_getTransactionByBlockNumberAndIndex}
 \usage{
 eth_getTransactionByBlockNumberAndIndex(block_number, index_number = "0x0",
   rpc_address = "http://localhost:8545")

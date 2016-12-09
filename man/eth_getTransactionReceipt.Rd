@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getTransactionReceipt}
 \alias{eth_getTransactionReceipt}
-\title{Eth getTransactionReceipt}
+\title{eth_getTransactionReceipt}
 \usage{
 eth_getTransactionReceipt(transaction_hash,
   rpc_address = "http://localhost:8545")

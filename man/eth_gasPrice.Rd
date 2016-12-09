@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_gasPrice}
 \alias{eth_gasPrice}
-\title{Eth gasPrice}
+\title{eth_gasPrice}
 \usage{
 eth_gasPrice(rpc_address = "http://localhost:8545")
 }

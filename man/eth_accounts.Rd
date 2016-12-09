@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_accounts}
 \alias{eth_accounts}
-\title{Eth accounts}
+\title{eth_accounts}
 \usage{
 eth_accounts(rpc_address = "http://localhost:8545")
 }

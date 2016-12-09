@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getCode}
 \alias{eth_getCode}
-\title{Eth getCode}
+\title{eth_getCode}
 \usage{
 eth_getCode(address, block_number, rpc_address = "http://localhost:8545")
 }

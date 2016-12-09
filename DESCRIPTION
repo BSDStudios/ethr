@@ -1,6 +1,6 @@
 Package: ethr
 Title: Ethereum Blockchain Data for R
-Version: 0.9.13
+Version: 0.9.14
 Authors@R: as.person(c(
     "Ben Leland <ben.leland@electron.org.uk> [aut, cre]", 
     "Kate Harris <kateharris142@gmail.com> [aut]"

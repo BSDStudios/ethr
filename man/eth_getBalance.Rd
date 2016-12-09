@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getBalance}
 \alias{eth_getBalance}
-\title{Eth getBalance}
+\title{eth_getBalance}
 \usage{
 eth_getBalance(address, block_number, rpc_address = "http://localhost:8545")
 }

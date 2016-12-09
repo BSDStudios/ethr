@@ -5,6 +5,9 @@
 ## New
 
 * Parity support (woohoo!)
+* Added UNIX timestamp and count of uncles to getBlockHeader data.frame
+* Added blNumberOfTransactions to getBlockHeader
+* Bug fixes (#5, )
 
 # ethr 0.9.12
 

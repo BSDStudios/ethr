@@ -74,6 +74,7 @@ collateBlockData <- function(block) {
     blReceiptsRoot = block$receiptsRoot,
     blStateRoot = block$stateRoot,
     blTransactionsRoot = block$transactionsRoot,
+    blNumberOfTransactions = length(block$transactions),
     blNumberOfUncles = length(block$uncles))
   
   return(block_data)

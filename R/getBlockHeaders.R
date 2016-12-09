@@ -7,7 +7,7 @@
 #' @param start_block numeric, Starting block number for extraction. 
 #' @param end_block numeric, Ending block for extraction, inclusive. 
 #' @param parallel boolean, invokes a parallelised plyr loop
-#' @param rpc_address, The address of the RPC API.
+#' @param rpc_address string, The address of the RPC API.
 #' 
 #' To initialise parallel workers:
 #' workers <-makeCluster(3)
@@ -20,8 +20,9 @@
 #' getBlockHeaders(100)
 #' getBlockHeaders(start_block = 951460, end_block = 951560)
 getBlockHeaders <- function(n_blocks = NULL, start_block = NULL, 
-                                 end_block = NULL, parallel = FALSE, rpc_address = "http://localhost:8545") {
-
+                            end_block = NULL, parallel = FALSE, rpc_address = "http://localhost:8545") {
+  
+  print(rpc_address)
   
   if (!is.null(start_block) & !is.null(end_block) & !is.null(n_blocks)) {
     stop("Provide either 'start' and 'end' OR n_blocks")}
@@ -31,19 +32,19 @@ getBlockHeaders <- function(n_blocks = NULL, start_block = NULL,
     end <- end_block
     start <- start_block
   } else {
-    end <- as.numeric(hexDec(eth_blockNumber()))
+    end <- as.numeric(hexDec(eth_blockNumber(rpc_address = rpc_address)))
     start <- end - (n_blocks -1)
   }
   
-  transactions <- rbind(plyr::ldply(
+  block_headers <- rbind(plyr::ldply(
     .data = start:end,
     .progress = "text",
     .parallel = parallel,
     .fun = function(x) {
-      block <- eth_getBlockByNumber(block_number = decHex(x), full_list = TRUE)
+      block <- eth_getBlockByNumber(block_number = decHex(x), full_list = TRUE, rpc_address = rpc_address)
       block_data <- collateBlockData(block)
       return(block_data)
-      }  ))
+    }))
   
-  return(transactions)
+  return(block_headers)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getBlockByNumber}
 \alias{eth_getBlockByNumber}
-\title{Eth getBlockByNumber}
+\title{eth_getBlockByNumber}
 \usage{
 eth_getBlockByNumber(block_number, full_list = FALSE,
   rpc_address = "http://localhost:8545")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_coinbase}
 \alias{eth_coinbase}
-\title{Eth coinbase}
+\title{eth_coinbase}
 \usage{
 eth_coinbase(rpc_address = "http://localhost:8545")
 }

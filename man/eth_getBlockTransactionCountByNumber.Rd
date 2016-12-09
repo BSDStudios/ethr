@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getBlockTransactionCountByNumber}
 \alias{eth_getBlockTransactionCountByNumber}
-\title{Eth getBlockTransactionCountByNumber}
+\title{eth_getBlockTransactionCountByNumber}
 \usage{
 eth_getBlockTransactionCountByNumber(block_number,
   rpc_address = "http://localhost:8545")

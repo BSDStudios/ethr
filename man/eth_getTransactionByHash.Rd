@@ -2,7 +2,7 @@
 % Please edit documentation in R/ethRPCFunctions.R
 \name{eth_getTransactionByHash}
 \alias{eth_getTransactionByHash}
-\title{Eth getTransactionByHash}
+\title{eth_getTransactionByHash}
 \usage{
 eth_getTransactionByHash(transaction_hash,
   rpc_address = "http://localhost:8545")
